@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using static MicroCLib.Models.Reference.PlanReference;
 
-namespace micro_c_lib.Tests
+namespace MicroCLib.Tests
 {
     [TestClass]
     public class PlansTest

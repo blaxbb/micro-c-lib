@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using static MicroCLib.Models.BuildComponent;
 
-namespace micro_c_lib.Models.Build
+namespace MicroCLib.Models.Build
 {
     public class SSDFormFactorDependency : FieldContainsDependency
     {

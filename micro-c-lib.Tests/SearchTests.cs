@@ -1,4 +1,4 @@
-﻿using micro_c_lib.Models;
+﻿using MicroCLib.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace micro_c_lib.Tests
+namespace MicroCLib.Tests
 {
     [TestClass]
     public class SearchTests

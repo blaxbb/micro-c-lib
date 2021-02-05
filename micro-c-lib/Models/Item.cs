@@ -1,6 +1,4 @@
-﻿
-using micro_c_lib.Models;
-using micro_c_lib.Models.Json;
+﻿using MicroCLib.Models.Json;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;

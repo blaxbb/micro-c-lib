@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace micro_c_lib.Models
+namespace MicroCLib.Models
 {
     public static class Stores
     {

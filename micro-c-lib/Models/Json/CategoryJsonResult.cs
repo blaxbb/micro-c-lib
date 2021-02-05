@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace micro_c_lib.Models.Json
+namespace MicroCLib.Models.Json
 {
     internal class CategoryJsonResult
     {

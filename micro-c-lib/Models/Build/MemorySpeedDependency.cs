@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 using static MicroCLib.Models.BuildComponent;
 using System.Linq;
 
-namespace micro_c_lib.Models.Build
+namespace MicroCLib.Models.Build
 {
     public class MemorySpeedDependency : FieldContainsDependency
     {

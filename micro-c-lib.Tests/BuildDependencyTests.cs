@@ -1,5 +1,5 @@
-﻿using micro_c_lib.Models.Build;
-using MicroCLib.Models;
+﻿using MicroCLib.Models;
+using MicroCLib.Models.Build;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using static MicroCLib.Models.BuildComponent;
 
-namespace micro_c_lib.Tests
+namespace MicroCLib.Tests
 {
     [TestClass]
     public class BuildDependencyTests

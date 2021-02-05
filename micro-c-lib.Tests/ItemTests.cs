@@ -5,7 +5,7 @@ using System.Runtime.InteropServices.ComTypes;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace micro_c_lib.Tests
+namespace MicroCLib.Tests
 {
     [TestClass]
     public class ItemTests

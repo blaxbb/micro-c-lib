@@ -1,4 +1,4 @@
-﻿using micro_c_lib.Models.Build;
+﻿using MicroCLib.Models.Build;
 using System.Collections.Generic;
 using static MicroCLib.Models.BuildComponent;
 

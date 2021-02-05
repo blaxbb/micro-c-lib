@@ -8,7 +8,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace micro_c_lib.Models
+namespace MicroCLib.Models
 {
     public static class Search
     {
