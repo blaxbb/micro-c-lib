@@ -41,7 +41,7 @@ namespace MicroCLib.Tests
         [TestMethod("Item found")]
         public void FromUrlItemFound()
         {
-            Assert.IsTrue(item.SKU != "000000");
+            Assert.IsTrue(item.SKU != "000000" && item.SKU != "");
         }
 
         [TestCategory("FromUrl")]
@@ -182,7 +182,7 @@ namespace MicroCLib.Tests
         [TestMethod("Regex SKU")]
         public void RegexSKU()
         {
-            var sku = Item.ParseSKU(item);
+            var sku = Item.ParseSKU(item, body);
             Assert.IsNotNull(sku);
             Assert.IsTrue(sku.Length == 6);
         }

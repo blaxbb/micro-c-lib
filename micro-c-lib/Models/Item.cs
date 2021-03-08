@@ -81,7 +81,7 @@ namespace MicroCLib.Models
                 item.Name = ParseName(body);
                 item.Brand = ParseBrand(body);
                 item.Specs = ParseSpecs(body);
-                item.SKU = ParseSKU(item);
+                item.SKU = ParseSKU(item, body);
 
                 item.Stock = ParseStock(body);
                 item.Price = ParsePrice(body);
@@ -119,11 +119,18 @@ namespace MicroCLib.Models
 
             return results;
         }
-        public static string ParseSKU(Item item)
+        public static string ParseSKU(Item item, string body)
         {
             if (item.Specs != null && item.Specs.ContainsKey("SKU"))
             {
                 return item.Specs["SKU"] ?? "";
+            }
+
+            var serviceSKURegex = "class=\"skuInfo\".*</span>.*?(\\d{6})";
+            var result = Regex.Match(body, serviceSKURegex, RegexOptions.Singleline);
+            if (result.Success)
+            {
+                return result.Groups[1].Value;
             }
 
             return "";
@@ -201,6 +208,13 @@ namespace MicroCLib.Models
                 {
                     result.Add(m.Groups[1].Value);
                 }
+                return result;
+            }
+
+            var serviceResult = Regex.Match(body, "image-slide.*?img src=\"(.*?)\"");
+            if (serviceResult.Success)
+            {
+                result.Add(serviceResult.Groups[1].Value);
             }
 
             return result;
