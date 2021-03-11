@@ -1,7 +1,9 @@
 ﻿using MicroCLib.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -77,6 +79,30 @@ namespace MicroCLib.Models
                 var result = await ParseBody(body, token);
                 result.Page = page;
                 token?.ThrowIfCancellationRequested();
+                return result;
+            }
+
+            return new SearchResults();
+        }
+
+        public static async Task<SearchResults> LoadEnhanced(string searchQuery, string storeID, string categoryFilter, CancellationToken? token = null)
+        {
+            Dictionary<string, string> query = new Dictionary<string, string>()
+            {
+                {"query", searchQuery},
+                {"storeId", storeID },
+                {"categoryFilter", categoryFilter },
+                {"orderBy", "0"},
+                {"page", "0" }
+            };
+
+            string queryString = string.Join("&", query.Select((x) => x.Key + "=" + x.Value?.ToString()));
+            var url = $"https://microc.bbarrett.me/MicroCenterProxy/searchAll?{queryString}";
+            var response = await (token != null ? client.GetAsync(url, token.Value) : client.GetAsync(url));
+            if (response.IsSuccessStatusCode)
+            {
+                var body = await response.Content.ReadAsStringAsync();
+                var result = JsonConvert.DeserializeObject<SearchResults>(body);
                 return result;
             }
 
