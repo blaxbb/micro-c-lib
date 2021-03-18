@@ -1,4 +1,5 @@
-﻿using MicroCLib.Models;
+﻿using micro_c_lib.Models;
+using MicroCLib.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -115,6 +116,7 @@ namespace MicroCLib.Models
             var shortMatches = Regex.Matches(body, "class=\"image\" data-name=\"(.*?)\" data-id=\"(.*?)\"(?:.*?)price=\"(.*?)\"(?:.*?)data-brand=\"(.*?)\"(?:.*?)href=\"(.*?)\"(?:.*?)src=\"(.*?)\"");
             var stockMatches = Regex.Matches(body, "<div class=\"stock\">(?:.+?)strong>\\s*(.*?)<span", RegexOptions.Singleline);
             var skuMatches = Regex.Matches(body, "<p class=\"sku\">SKU: (\\d{6})</p>");
+            var clearanceMatches = Regex.Matches(body, "\"clearance\".*?<\\/div>", RegexOptions.Singleline);
             var newItems = new List<Item>();
 
             var match = Regex.Match(body, "(\\d+) items found");
@@ -165,6 +167,23 @@ namespace MicroCLib.Models
                     Debug.WriteLine(m.Value);
                 }
 
+                var clearanceBody = clearanceMatches[i].Value;
+                var m_clearanceQty = Regex.Match(clearanceBody, "clearance\">[^\\<\\>]*?(\\d+)", RegexOptions.Singleline);
+                var m_clearancePrice = Regex.Match(clearanceBody, "clearance\">.*?<span>\\$([\\d.]+)", RegexOptions.Singleline);
+                int clearanceQty = 0;
+                float clearancePrice = 0f;
+                if(m_clearanceQty.Success && m_clearancePrice.Success)
+                {
+                    int.TryParse(m_clearanceQty.Groups[1].Value, out clearanceQty);
+                    float.TryParse(m_clearancePrice.Groups[1].Value, out clearancePrice);
+                }
+
+                var clearanceInfo = new List<ClearanceInfo>();
+                for(int c_i = 0; c_i < clearanceQty; c_i++)
+                {
+                    clearanceInfo.Add(new ClearanceInfo() { Price = clearancePrice });
+                }
+
                 float.TryParse(m.Groups[3].Value, out float price);
                 var item = new Item()
                 {
@@ -177,7 +196,8 @@ namespace MicroCLib.Models
                     PictureUrls = new List<string>() { m.Groups[6].Value },
                     Stock = stock,
                     SKU = sku,
-                    ComingSoon = comingSoon
+                    ComingSoon = comingSoon,
+                    ClearanceItems = clearanceInfo
                 };
 
                 result.Items.Add(item);

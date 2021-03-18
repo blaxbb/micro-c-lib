@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -13,7 +14,7 @@ namespace MicroCLib.Tests
     {
         SearchResults results;
 
-        const string QUERY = "ryzen 5";
+        const string QUERY = "powerspec desktop";
         const string STORE = "141";
 
         public SearchTests()
@@ -61,6 +62,13 @@ namespace MicroCLib.Tests
                 Assert.IsTrue(!string.IsNullOrWhiteSpace(item.URL));
                 Assert.IsTrue(Regex.Match(item.URL, "/product/\\d{6,7}/.*").Success);
             }
+        }
+
+        [TestMethod]
+        public void ResultsHaveClearance()
+        {
+            Assert.IsTrue(results.Items.Any(i => i.ClearanceItems.Count > 0));
+            Assert.IsTrue(results.Items.Any(i => i.ClearanceItems.Any(c => c.Price > 0)));
         }
 
         [TestMethod]

@@ -15,7 +15,7 @@ namespace MicroCLib.Tests
         //
         //should have a list of different products that hit different conditions
         //
-        private const string URL = "/product/485989/inland-wireless-keyboard-and-mouse-combo";
+        private const string URL = "/product/631691/powerspec-g164-gaming-computer";
         private const string STORE_ID = "141";
         public ItemTests()
         {
@@ -135,6 +135,14 @@ namespace MicroCLib.Tests
         {
             Assert.IsFalse(item.ComingSoon);
         }
+
+        [TestCategory("FromUrl")]
+        [TestMethod("Item has clearance listings")]
+        public void FromUrlClearanceItems()
+        {
+            Assert.IsTrue(item.ClearanceItems.Count > 0);
+        }
+
 
         [TestMethod]
         public void CloneVerification()

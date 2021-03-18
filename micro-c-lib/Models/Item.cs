@@ -1,4 +1,5 @@
-﻿using MicroCLib.Models.Json;
+﻿using micro_c_lib.Models;
+using MicroCLib.Models.Json;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
+using Windows.UI.Xaml;
 using static MicroCLib.Models.BuildComponent;
 
 namespace MicroCLib.Models
@@ -40,12 +42,14 @@ namespace MicroCLib.Models
         public bool ComingSoon { get; set; }
         public List<CategoryInfo> Categories { get; private set; }
         public ComponentType ComponentType { get; set; }
+        public List<ClearanceInfo> ClearanceItems { get; set; }
 
         public Item()
         {
             Specs = new Dictionary<string, string>();
             PictureUrls = new List<string>();
             Plans = new List<Plan>();
+            ClearanceItems = new List<ClearanceInfo>();
         }
 
         public static async Task<Item> FromUrl(string urlIdStub, string storeId, CancellationToken? token = null, IProgress<ProgressInfo> progress = null)
@@ -99,6 +103,8 @@ namespace MicroCLib.Models
 
                 item.Categories = ParseCategories(body);
                 item.ComponentType = GetPrimaryType(item.Categories);
+
+                item.ClearanceItems = ParseClearance(body);
             }
 
             token?.ThrowIfCancellationRequested();
@@ -323,6 +329,37 @@ namespace MicroCLib.Models
             return "";
         }
 
+        public static List<ClearanceInfo> ParseClearance(string body)
+        {
+            var ret = new List<ClearanceInfo>();
+
+            var items = GetClearanceItems.Matches(body);
+            for(int i = 0; i < items.Count / 2; i++)
+            {
+                var item = items[i];
+                var text = item.Groups[1].Value;
+
+                var info = new ClearanceInfo();
+
+                var state = GetClearanceState.Match(text);
+                if (state.Success)
+                {
+                    info.State = state.Groups[1].Value.Trim();
+                }
+
+                var price = GetClearancePrice.Match(text);
+                if (price.Success && float.TryParse(price.Groups[1].Value, out float f))
+                {
+                    info.Price = f;
+                }
+
+                ret.Add(info);
+            }
+
+
+            return ret;
+        }
+
 
         private static Regex GetSpecs => new Regex("<div class=\"spec-body\"><div(?: class=)?[a-zA-Z\"=]*?>(.*?)(.*?)</div>.?<div(?: class=)?[a-zA-Z\"=]*?>(.*?)</div", RegexOptions.Singleline);
         private static Regex GetPrice => new Regex("'productPrice':'(.*?)',");
@@ -338,6 +375,10 @@ namespace MicroCLib.Models
         private static Regex GetIDFromURL => new Regex("\\/product\\/(\\d+?)\\/");
         private static Regex GetBrand => new Regex("data-brand=\"(.*?)\"");
         private static Regex GetComingSoon => new Regex("<div class=\"comingsoon\"");
+
+        private static Regex GetClearanceItems => new Regex("clearance-body(.*?)<\\/tr>", RegexOptions.Singleline);
+        private static Regex GetClearanceState => new Regex("index_line.*?>(.*?)<", RegexOptions.Singleline);
+        private static Regex GetClearancePrice => new Regex("data-price=\"(.*?)\"", RegexOptions.Singleline);
 
         public static string HttpDecode(string s)
         {
