@@ -12,7 +12,6 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
-using Windows.UI.Xaml;
 using static MicroCLib.Models.BuildComponent;
 
 namespace MicroCLib.Models
