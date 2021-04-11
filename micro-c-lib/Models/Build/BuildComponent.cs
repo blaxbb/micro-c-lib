@@ -86,15 +86,18 @@ namespace MicroCLib.Models
         //public string ErrorText => String.Join("\n", Dependencies.Where(d => !d.Compatible()).Select(d => d.ErrorText));
         private string errorText;
         private string hintText;
+        private List<string> serials;
 
         [JsonIgnore]
         public string ErrorText { get => errorText; set => SetProperty(ref errorText, value); }
         [JsonIgnore]
         public string HintText { get => hintText; set => SetProperty(ref hintText, value); }
 
+        public List<string> Serials { get => serials; set => SetProperty(ref serials, value); }
+
         public BuildComponent()
         {
-            
+            Serials = new List<string>();
         }
 
         public bool PlanApplicable()
