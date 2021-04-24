@@ -114,7 +114,7 @@ namespace MicroCLib.Models
         {
             var result = new SearchResults();
             var shortMatches = Regex.Matches(body, "class=\"image\" data-name=\"(.*?)\" data-id=\"(.*?)\"(?:.*?)price=\"(.*?)\"(?:.*?)data-brand=\"(.*?)\"(?:.*?)href=\"(.*?)\"(?:.*?)src=\"(.*?)\"");
-            var stockMatches = Regex.Matches(body, "<div class=\"stock\">(?:.+?)strong>\\s*(.*?)<span", RegexOptions.Singleline);
+            var stockMatches = Regex.Matches(body, "<div class=\"stock\">(.+?)<\\/div>", RegexOptions.Singleline);
             var skuMatches = Regex.Matches(body, "<p class=\"sku\">SKU: (\\d{6})</p>");
             var clearanceMatches = Regex.Matches(body, "\"clearance\".*?<\\/div>", RegexOptions.Singleline);
             var newItems = new List<Item>();
@@ -139,12 +139,9 @@ namespace MicroCLib.Models
                 if (i < stockMatches.Count)
                 {
                     Match stockMatch = stockMatches[i];
-                    stock = string.IsNullOrWhiteSpace(stockMatch.Groups[1].Value) ? "0" : stockMatch.Groups[1].Value;
-                    if (stock.Contains("<"))
-                    {
-                        stock = "Soon";
-                        comingSoon = true;
-                    }
+                    var stockHtml = string.IsNullOrWhiteSpace(stockMatch.Groups[1].Value) ? "0" : stockMatch.Groups[1].Value;
+                    var stockRegex = new Regex("<span class=\"inventoryCnt\">(.*?) <").Match(stockHtml);
+                    stock = stockRegex.Success ? stockRegex.Groups[1].Value : "0";
                 }
 
                 string sku = "000000";

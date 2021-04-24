@@ -190,7 +190,7 @@ namespace MicroCLib.Models
             {
                 return match.Groups[1].Value;
             }
-            return "";
+            return "0";
         }
 
         public static string ParseName(string body)
@@ -365,7 +365,7 @@ namespace MicroCLib.Models
         private static Regex GetURL => new Regex("'pageUrl':'(.*?)',");
         private static Regex GetOriginalPrice => new Regex("\"savings\"><span>\\$([\\d\\.]+)");
         private static Regex GetOriginalPriceAlt => new Regex("<span id='pricing' content=\"(.*?)\">");
-        private static Regex GetStock => new Regex("<span class=\"inventoryCnt\">(.*?)</span>");
+        private static Regex GetStock => new Regex("<span class=\"inventoryCnt\">(.*?) <");
         private static Regex GetName => new Regex("data-name=\"(.*?)\"");
         private static Regex GetPictures => new Regex("<img class= ?\"productImageZoom\" src=\"(.*?)\"");
         private static Regex GetFirstLocation => new Regex("class=\"findItLink\"(?:.*?)>(.*?)<");
