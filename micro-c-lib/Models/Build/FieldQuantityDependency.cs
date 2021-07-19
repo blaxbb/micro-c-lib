@@ -35,7 +35,7 @@ namespace MicroCLib.Models
                 int containerSlots;
                 if (!string.IsNullOrWhiteSpace(containerFieldName))
                 {
-                    containerSlots = containerItems.Sum(i => GetValue(i, containerFieldName).Value);
+                    containerSlots = containerItems.Sum(i => GetValue(i, containerFieldName) ?? 0);
                 }
                 else
                 {
@@ -56,7 +56,7 @@ namespace MicroCLib.Models
 
                 if (!string.IsNullOrWhiteSpace(subTypeFieldName))
                 {
-                    subItemCount = subItems.Sum(i => GetValue(i, subTypeFieldName).Value);
+                    subItemCount = subItems.Sum(i => GetValue(i, subTypeFieldName) ?? 0);
                 }
                 else
                 {
@@ -95,7 +95,7 @@ namespace MicroCLib.Models
             int containerSlots;
             if (!string.IsNullOrWhiteSpace(containerFieldName))
             {
-                containerSlots = containerItems.Sum(i => GetValue(i, containerFieldName).Value);
+                containerSlots = containerItems.Sum(i => GetValue(i, containerFieldName) ?? 0);
             }
             else
             {
@@ -105,7 +105,7 @@ namespace MicroCLib.Models
             int subItemCount;
             if(!string.IsNullOrWhiteSpace(subTypeFieldName))
             {
-                subItemCount = subItems.Sum(i => GetValue(i, subTypeFieldName).Value);
+                subItemCount = subItems.Sum(i => GetValue(i, subTypeFieldName) ?? 0);
             }
             else
             {
