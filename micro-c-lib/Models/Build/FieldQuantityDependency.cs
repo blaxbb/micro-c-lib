@@ -142,5 +142,9 @@ namespace MicroCLib.Models
             return null;
         }
 
+        public override bool Applicable(BuildComponent.ComponentType type)
+        {
+            return type == containerType || type == subType;
+        }
     }
 }

@@ -145,5 +145,11 @@ namespace MicroCLib.Models
             var secondSpecLines = secondValue.Split('\n');
             return firstValue.Split('\n').Any(s => secondSpecLines.Any(l => l.Contains(s)));
         }
+
+        public override bool Applicable(ComponentType type)
+        {
+            return FirstType == type || SecondType == type;
+        }
+
     }
 }

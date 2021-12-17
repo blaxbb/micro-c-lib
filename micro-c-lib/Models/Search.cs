@@ -110,6 +110,34 @@ namespace MicroCLib.Models
             return new SearchResults();
         }
 
+        public static async Task<Item> LoadFast(string search, CancellationToken? token = null)
+        {
+            var url = $"https://microc.bbarrett.me/MicroCenterProxy/getCached/{search}";
+            var response = await (token != null ? client.GetAsync(url, token.Value) : client.GetAsync(url));
+            if (response.IsSuccessStatusCode)
+            {
+                var body = await response.Content.ReadAsStringAsync();
+                var result = JsonConvert.DeserializeObject<Item>(body);
+                return result;
+            }
+
+            return null;
+        }
+
+        public static async Task<SearchResults> LoadCategoryFast(BuildComponent.ComponentType type, CancellationToken? token = null)
+        {
+            var url = $"https://microc.bbarrett.me/MicroCenterProxy/getCachedCategory/{(int)type}";
+            var response = await (token != null ? client.GetAsync(url, token.Value) : client.GetAsync(url));
+            if (response.IsSuccessStatusCode)
+            {
+                var body = await response.Content.ReadAsStringAsync();
+                var result = JsonConvert.DeserializeObject<SearchResults>(body);
+                return result;
+            }
+
+            return new SearchResults();
+        }
+
         public static async Task<SearchResults> ParseBody(string body, CancellationToken? token = null)
         {
             var result = new SearchResults();

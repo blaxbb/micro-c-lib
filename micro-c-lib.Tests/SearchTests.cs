@@ -77,5 +77,34 @@ namespace MicroCLib.Tests
             var allResults = await Search.LoadAll(QUERY, STORE, null, Search.OrderByMode.pricelow, token: null);
             Assert.IsTrue(allResults.Items.Count == allResults.TotalResults);
         }
+
+        [TestMethod]
+        public async Task LoadFastSKU()
+        {
+            var item = await Search.LoadFast("195073");
+            Assert.IsTrue(!string.IsNullOrWhiteSpace(item.URL));
+        }
+
+        [TestMethod]
+        public async Task LoadFastUPC()
+        {
+            var item = await Search.LoadFast("730143312042");
+            Assert.IsTrue(!string.IsNullOrWhiteSpace(item.URL));
+        }
+
+        [TestMethod]
+        public async Task LoadFastFail()
+        {
+            var item = await Search.LoadFast("garbage");
+            Assert.IsNull(item);
+        }
+
+        [TestMethod]
+        public async Task LoadFastCategory()
+        {
+            var result = await Search.LoadCategoryFast(BuildComponent.ComponentType.CPU);
+            Assert.IsTrue(result.Items.Count > 1);
+        }
+
     }
 }

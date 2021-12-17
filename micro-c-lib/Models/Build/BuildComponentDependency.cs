@@ -11,6 +11,7 @@ namespace MicroCLib.Models
         //public abstract string HintText();
         public abstract List<DependencyResult> HasErrors(List<Item> items);
         public abstract string? HintText(List<Item> items, ComponentType type);
+        public abstract bool Applicable(ComponentType type);
         public string Name { get; protected set; }
 
         public BuildComponentDependency(string name)

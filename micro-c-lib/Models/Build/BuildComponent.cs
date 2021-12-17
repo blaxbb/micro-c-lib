@@ -219,7 +219,6 @@ namespace MicroCLib.Models
                     yield return PlanType.Carry_In;
                     break;
             }
-
         }
 
         public static int MaxNumberPerType(ComponentType type)

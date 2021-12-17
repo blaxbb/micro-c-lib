@@ -200,5 +200,10 @@ namespace MicroCLib.Models
 
             return 0;
         }
+
+        public override bool Applicable(BuildComponent.ComponentType type)
+        {
+            return type == FirstType || type == SecondType;
+        }
     }
 }
