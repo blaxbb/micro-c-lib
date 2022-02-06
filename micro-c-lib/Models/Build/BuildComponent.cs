@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Http;
 using System.Text.RegularExpressions;
@@ -86,18 +87,18 @@ namespace MicroCLib.Models
         //public string ErrorText => String.Join("\n", Dependencies.Where(d => !d.Compatible()).Select(d => d.ErrorText));
         private string errorText;
         private string hintText;
-        private List<string> serials;
+        private ObservableCollection<string> serials;
 
         [JsonIgnore]
         public string ErrorText { get => errorText; set => SetProperty(ref errorText, value); }
         [JsonIgnore]
         public string HintText { get => hintText; set => SetProperty(ref hintText, value); }
 
-        public List<string> Serials { get => serials; set => SetProperty(ref serials, value); }
+        public ObservableCollection<string> Serials { get => serials; set => SetProperty(ref serials, value); }
 
         public BuildComponent()
         {
-            Serials = new List<string>();
+            Serials = new ObservableCollection<string>();
         }
 
         public bool PlanApplicable()
