@@ -82,28 +82,28 @@ namespace MicroCLib.Models.Reference
         static PlanReference()
         {
 
-            AllPlans.Add(new PlanReference(PlanType.Replacement, 0.00f, 4.99f, new PlanTier(2, 0.75f), new PlanTier(3, 1.99f)));
-            AllPlans.Add(new PlanReference(PlanType.Replacement, 5.00f, 9.99f, new PlanTier(2, 0.99f), new PlanTier(3, 2.49f)));
-            AllPlans.Add(new PlanReference(PlanType.Replacement, 10.00f, 14.99f, new PlanTier(2, 1.49f), new PlanTier(3, 2.99f)));
-            AllPlans.Add(new PlanReference(PlanType.Replacement, 15.00f, 19.99f, new PlanTier(2, 1.99f), new PlanTier(3, 3.99f)));
-            AllPlans.Add(new PlanReference(PlanType.Replacement, 20.00f, 24.99f, new PlanTier(2, 2.49f), new PlanTier(3, 4.99f)));
-            AllPlans.Add(new PlanReference(PlanType.Replacement, 25.00f, 49.99f, new PlanTier(2, 4.99f), new PlanTier(3, 9.99f)));
-            AllPlans.Add(new PlanReference(PlanType.Replacement, 50.00f, 74.99f, new PlanTier(2, 6.99f), new PlanTier(3, 14.99f)));
-            AllPlans.Add(new PlanReference(PlanType.Replacement, 75.00f, 99.99f, new PlanTier(2, 9.99f), new PlanTier(3, 19.99f)));
-            AllPlans.Add(new PlanReference(PlanType.Replacement, 100.00f, 199.99f, new PlanTier(2, 19.99f), new PlanTier(3, 39.99f)));
-            AllPlans.Add(new PlanReference(PlanType.Replacement, 200.00f, 299.99f, new PlanTier(2, 29.99f), new PlanTier(3, 59.99f)));
-            AllPlans.Add(new PlanReference(PlanType.Replacement, 300.00f, 399.99f, new PlanTier(2, 49.99f), new PlanTier(3, 89.99f)));
-            AllPlans.Add(new PlanReference(PlanType.Replacement, 400.00f, 500.00f, new PlanTier(2, 69.99f), new PlanTier(3, 139.99f)));
+            AllPlans.Add(new PlanReference(PlanType.Replacement, 0.00f, 4.99f, new PlanTier(2, 0.75f, "023366"), new PlanTier(3, 1.99f, "024604")));
+            AllPlans.Add(new PlanReference(PlanType.Replacement, 5.00f, 9.99f, new PlanTier(2, 0.99f, "023432"), new PlanTier(3, 2.49f, "024661")));
+            AllPlans.Add(new PlanReference(PlanType.Replacement, 10.00f, 14.99f, new PlanTier(2, 1.49f, "023465"), new PlanTier(3, 2.99f, "024844")));
+            AllPlans.Add(new PlanReference(PlanType.Replacement, 15.00f, 19.99f, new PlanTier(2, 1.99f, "023689"), new PlanTier(3, 3.99f, "024901")));
+            AllPlans.Add(new PlanReference(PlanType.Replacement, 20.00f, 24.99f, new PlanTier(2, 2.49f, "023739"), new PlanTier(3, 4.99f, "024950")));
+            AllPlans.Add(new PlanReference(PlanType.Replacement, 25.00f, 49.99f, new PlanTier(2, 4.99f, "024059"), new PlanTier(3, 9.99f, "025007")));
+            AllPlans.Add(new PlanReference(PlanType.Replacement, 50.00f, 74.99f, new PlanTier(2, 6.99f, "024125"), new PlanTier(3, 14.99f, "025056")));
+            AllPlans.Add(new PlanReference(PlanType.Replacement, 75.00f, 99.99f, new PlanTier(2, 9.99f, "024158"), new PlanTier(3, 19.99f, "025312")));
+            AllPlans.Add(new PlanReference(PlanType.Replacement, 100.00f, 199.99f, new PlanTier(2, 19.99f, "024364"), new PlanTier(3, 39.99f, "025692")));
+            AllPlans.Add(new PlanReference(PlanType.Replacement, 200.00f, 299.99f, new PlanTier(2, 29.99f, "024372"), new PlanTier(3, 59.99f, "025742")));
+            AllPlans.Add(new PlanReference(PlanType.Replacement, 300.00f, 399.99f, new PlanTier(2, 49.99f, "024430"), new PlanTier(3, 89.99f, "025809")));
+            AllPlans.Add(new PlanReference(PlanType.Replacement, 400.00f, 500.00f, new PlanTier(2, 69.99f, "024448"), new PlanTier(3, 139.99f, "025866")));
 
-            AllPlans.Add(new PlanReference(PlanType.Small_Electronic_ADH, 0.00f, 49.99f, new PlanTier(1, 5.99f), new PlanTier(2, 14.99f)));
-            AllPlans.Add(new PlanReference(PlanType.Small_Electronic_ADH, 50.00f, 99.99f, new PlanTier(1, 19.99f), new PlanTier(2, 39.99f)));
-            AllPlans.Add(new PlanReference(PlanType.Small_Electronic_ADH, 100.00f, 199.99f, new PlanTier(1, 29.99f), new PlanTier(2, 69.99f)));
-            AllPlans.Add(new PlanReference(PlanType.Small_Electronic_ADH, 200.00f, 299.99f, new PlanTier(1, 49.99f), new PlanTier(2, 99.99f)));
-            AllPlans.Add(new PlanReference(PlanType.Small_Electronic_ADH, 300.00f, 399.99f, new PlanTier(1, 59.99f), new PlanTier(2, 139.99f)));
-            AllPlans.Add(new PlanReference(PlanType.Small_Electronic_ADH, 400.00f, 499.99f, new PlanTier(1, 79.99f), new PlanTier(2, 179.99f)));
-            AllPlans.Add(new PlanReference(PlanType.Small_Electronic_ADH, 500.00f, 749.99f, new PlanTier(1, 99.99f), new PlanTier(2, 199.99f)));
-            AllPlans.Add(new PlanReference(PlanType.Small_Electronic_ADH, 750.00f, 999.99f, new PlanTier(1, 199.99f), new PlanTier(2, 299.99f)));
-            AllPlans.Add(new PlanReference(PlanType.Small_Electronic_ADH, 1000.00f, 1499.99f, new PlanTier(1, 299.99f), new PlanTier(2, 399.99f)));
+            AllPlans.Add(new PlanReference(PlanType.Small_Electronic_ADH, 0.00f, 49.99f,  new PlanTier(1, 5.99f, "021113"), new PlanTier(2, 14.99f, "022293")));
+            AllPlans.Add(new PlanReference(PlanType.Small_Electronic_ADH, 50.00f, 99.99f, new PlanTier(1, 19.99f, "021279"), new PlanTier(2, 39.99f, "022319")));
+            AllPlans.Add(new PlanReference(PlanType.Small_Electronic_ADH, 100.00f, 199.99f, new PlanTier(1, 29.99f, "021618"), new PlanTier(2, 69.99f, "022392")));
+            AllPlans.Add(new PlanReference(PlanType.Small_Electronic_ADH, 200.00f, 299.99f, new PlanTier(1, 49.99f, "021766"), new PlanTier(2, 99.99f, "022426")));
+            AllPlans.Add(new PlanReference(PlanType.Small_Electronic_ADH, 300.00f, 399.99f, new PlanTier(1, 59.99f, "021840"), new PlanTier(2, 139.99f, "022566")));
+            AllPlans.Add(new PlanReference(PlanType.Small_Electronic_ADH, 400.00f, 499.99f, new PlanTier(1, 79.99f, "021873"), new PlanTier(2, 179.99f, "022590")));
+            AllPlans.Add(new PlanReference(PlanType.Small_Electronic_ADH, 500.00f, 749.99f, new PlanTier(1, 99.99f, "022079"), new PlanTier(2, 199.99f, "022715")));
+            AllPlans.Add(new PlanReference(PlanType.Small_Electronic_ADH, 750.00f, 999.99f, new PlanTier(1, 199.99f, "093385"), new PlanTier(2, 299.99f, "093393")));
+            AllPlans.Add(new PlanReference(PlanType.Small_Electronic_ADH, 1000.00f, 1499.99f, new PlanTier(1, 299.99f, "806422"), new PlanTier(2, 399.99f, "806430")));
 
             
 
@@ -306,20 +306,20 @@ namespace MicroCLib.Models.Reference
             AllPlans.Add(new PlanReference(PlanType.Build_Plan, 10000.00f, 14999.99f, new PlanTier(2, 1299.99f), new PlanTier(3, 1499.99f)));
             AllPlans.Add(new PlanReference(PlanType.Build_Plan, 15000.00f, 20000.00f, new PlanTier(2, 1499.99f), new PlanTier(3, 1999.99f)));
 
-            AllPlans.Add(new PlanReference(PlanType.Carry_In, 0.00f, 99.99f, new PlanTier(2, 19.99f), new PlanTier(3, 29.99f)));
-            AllPlans.Add(new PlanReference(PlanType.Carry_In, 100.00f, 199.99f, new PlanTier(2, 29.99f), new PlanTier(3, 59.99f)));
-            AllPlans.Add(new PlanReference(PlanType.Carry_In, 200.00f, 299.99f, new PlanTier(2, 39.99f), new PlanTier(3, 79.99f)));
-            AllPlans.Add(new PlanReference(PlanType.Carry_In, 300.00f, 399.99f, new PlanTier(2, 49.99f), new PlanTier(3, 89.99f)));
-            AllPlans.Add(new PlanReference(PlanType.Carry_In, 400.00f, 499.99f, new PlanTier(2, 59.99f), new PlanTier(3, 99.99f)));
-            AllPlans.Add(new PlanReference(PlanType.Carry_In, 500.00f, 599.99f, new PlanTier(2, 69.99f), new PlanTier(3, 119.99f)));
-            AllPlans.Add(new PlanReference(PlanType.Carry_In, 600.00f, 699.99f, new PlanTier(2, 79.99f), new PlanTier(3, 129.99f)));
-            AllPlans.Add(new PlanReference(PlanType.Carry_In, 700.00f, 799.99f, new PlanTier(2, 89.99f), new PlanTier(3, 159.99f)));
-            AllPlans.Add(new PlanReference(PlanType.Carry_In, 800.00f, 899.99f, new PlanTier(2, 99.99f), new PlanTier(3, 179.99f)));
-            AllPlans.Add(new PlanReference(PlanType.Carry_In, 900.00f, 999.99f, new PlanTier(2, 109.99f), new PlanTier(3, 199.99f)));
-            AllPlans.Add(new PlanReference(PlanType.Carry_In, 1000.00f, 1499.99f, new PlanTier(2, 139.99f), new PlanTier(3, 249.99f)));
-            AllPlans.Add(new PlanReference(PlanType.Carry_In, 1500.00f, 1999.99f, new PlanTier(2, 149.99f), new PlanTier(3, 249.99f)));
-            AllPlans.Add(new PlanReference(PlanType.Carry_In, 2000.00f, 2999.99f, new PlanTier(2, 199.99f), new PlanTier(3, 299.99f)));
-            AllPlans.Add(new PlanReference(PlanType.Carry_In, 3000.00f, 4999.99f, new PlanTier(2, 249.99f), new PlanTier(3, 349.99f)));
+            AllPlans.Add(new PlanReference(PlanType.Carry_In, 0.00f, 99.99f, new PlanTier(2, 19.99f, "025890"), new PlanTier(3, 29.99f, "026666")));
+            AllPlans.Add(new PlanReference(PlanType.Carry_In, 100.00f, 199.99f, new PlanTier(2, 29.99f, "026021"), new PlanTier(3, 59.99f, "026716")));
+            AllPlans.Add(new PlanReference(PlanType.Carry_In, 200.00f, 299.99f, new PlanTier(2, 39.99f, "026096"), new PlanTier(3, 79.99f, "026781")));
+            AllPlans.Add(new PlanReference(PlanType.Carry_In, 300.00f, 399.99f, new PlanTier(2, 49.99f, "026187"), new PlanTier(3, 89.99f, "026914")));
+            AllPlans.Add(new PlanReference(PlanType.Carry_In, 400.00f, 499.99f, new PlanTier(2, 59.99f, "026229"), new PlanTier(3, 99.99f, "026930")));
+            AllPlans.Add(new PlanReference(PlanType.Carry_In, 500.00f, 599.99f, new PlanTier(2, 69.99f, "026278"), new PlanTier(3, 119.99f, "026955")));
+            AllPlans.Add(new PlanReference(PlanType.Carry_In, 600.00f, 699.99f, new PlanTier(2, 79.99f, "026286"), new PlanTier(3, 129.99f, "026963")));
+            AllPlans.Add(new PlanReference(PlanType.Carry_In, 700.00f, 799.99f, new PlanTier(2, 89.99f, "026369"), new PlanTier(3, 159.99f, "026989")));
+            AllPlans.Add(new PlanReference(PlanType.Carry_In, 800.00f, 899.99f, new PlanTier(2, 99.99f, "026419"), new PlanTier(3, 179.99f, "027045")));
+            AllPlans.Add(new PlanReference(PlanType.Carry_In, 900.00f, 999.99f, new PlanTier(2, 109.99f, "026468"), new PlanTier(3, 199.99f, "027078")));
+            AllPlans.Add(new PlanReference(PlanType.Carry_In, 1000.00f, 1499.99f, new PlanTier(2, 139.99f, "026476"), new PlanTier(3, 249.99f, "027094")));
+            AllPlans.Add(new PlanReference(PlanType.Carry_In, 1500.00f, 1999.99f, new PlanTier(2, 149.99f, "026492"), new PlanTier(3, 249.99f, "027102")));
+            AllPlans.Add(new PlanReference(PlanType.Carry_In, 2000.00f, 2999.99f, new PlanTier(2, 199.99f, "026500"), new PlanTier(3, 299.99f, "027110")));
+            AllPlans.Add(new PlanReference(PlanType.Carry_In, 3000.00f, 4999.99f, new PlanTier(2, 249.99f, "026633"), new PlanTier(3, 349.99f, "027185")));
 
             AllPlans.Add(new PlanReference(PlanType.AppleCare_13_MBA, 0f, 0f, new PlanTier(3, 249.99f)));
             AllPlans.Add(new PlanReference(PlanType.AppleCare_13_MBP, 0f, 0f, new PlanTier(3, 269.99f)));

@@ -63,5 +63,29 @@ namespace MicroCLib.Tests
                 }
             }
         }
+
+        [TestMethod]
+        public void NoDuplicateSkus()
+        {
+            var skus = PlanReference.AllPlans.SelectMany(p => p.Tiers).GroupBy(t => t.SKU);
+            foreach(var group in skus)
+            {
+                if (group.ElementAt(0).SKU != "000000")
+                {
+                    Assert.IsTrue(group.Count() == 1, $"{group.ElementAt(0).SKU} appears {group.Count()} times!");
+                }
+            }
+        }
+
+        [TestMethod]
+        public void SixDigitSkus()
+        {
+            var tiers = PlanReference.AllPlans.SelectMany(p => p.Tiers);
+            foreach (var tier in tiers)
+            {
+                Assert.IsTrue(tier.SKU.Length == 6, $"{tier.SKU} length is not 6!");
+            }
+        }
+
     }
 }
