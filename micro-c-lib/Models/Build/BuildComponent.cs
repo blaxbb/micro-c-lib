@@ -215,7 +215,17 @@ namespace MicroCLib.Models
         {
             switch (type)
             {
-                case ComponentType.BluetoothAdapter:
+                case ComponentType.Laptop:
+                    yield return PlanType.Laptop_DOP;
+                    yield return PlanType.Laptop_ADH;
+                    yield return PlanType.Laptop_Extension;
+                    break;
+                case ComponentType.Desktop:
+                    yield return PlanType.Desktop_DOP;
+                    yield return PlanType.Desktop_ADH;
+                    yield return PlanType.Desktop_Extension;
+                    break;
+                default:
                     yield return PlanType.Replacement;
                     yield return PlanType.Carry_In;
                     break;

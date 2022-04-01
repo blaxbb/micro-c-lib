@@ -282,15 +282,15 @@ namespace MicroCLib.Models.Reference
             AllPlans.Add(new PlanReference(PlanType.Tablet_Extension, 1000.00f, 1499.99f, new PlanTier(1, 139.99f, "796011"), new PlanTier(2, 249.99f, "796268")));
             AllPlans.Add(new PlanReference(PlanType.Tablet_Extension, 1500.00f, 5000.00f, new PlanTier(1, 149.99f, "796029"), new PlanTier(2, 249.99f, "796276")));
 
-            AllPlans.Add(new PlanReference(PlanType.BYO_Replacement, 0.00f, 49.99f, new PlanTier(2, 6.99f), new PlanTier(3, 9.99f)));
-            AllPlans.Add(new PlanReference(PlanType.BYO_Replacement, 50.00f, 99.99f, new PlanTier(2, 14.99f), new PlanTier(3, 29.99f)));
-            AllPlans.Add(new PlanReference(PlanType.BYO_Replacement, 100.00f, 199.99f, new PlanTier(2, 29.99f), new PlanTier(3, 49.99f)));
-            AllPlans.Add(new PlanReference(PlanType.BYO_Replacement, 200.00f, 299.99f, new PlanTier(2, 49.99f), new PlanTier(3, 69.99f)));
-            AllPlans.Add(new PlanReference(PlanType.BYO_Replacement, 300.00f, 399.99f, new PlanTier(2, 69.99f), new PlanTier(3, 99.99f)));
-            AllPlans.Add(new PlanReference(PlanType.BYO_Replacement, 400.00f, 499.99f, new PlanTier(2, 89.99f), new PlanTier(3, 129.99f)));
-            AllPlans.Add(new PlanReference(PlanType.BYO_Replacement, 500.00f, 999.99f, new PlanTier(2, 139.99f), new PlanTier(3, 199.99f)));
-            AllPlans.Add(new PlanReference(PlanType.BYO_Replacement, 1000.00f, 1499.99f, new PlanTier(2, 199.99f), new PlanTier(3, 279.99f)));
-            AllPlans.Add(new PlanReference(PlanType.BYO_Replacement, 1500.00f, 3000.00f, new PlanTier(2, 299.99f), new PlanTier(3, 429.99f)));
+            AllPlans.Add(new PlanReference(PlanType.BYO_Replacement, 0.00f, 49.99f, new PlanTier(2, 6.99f, "022749"), new PlanTier(3, 9.99f, "023119")));
+            AllPlans.Add(new PlanReference(PlanType.BYO_Replacement, 50.00f, 99.99f, new PlanTier(2, 14.99f, "022798"), new PlanTier(3, 29.99f, "023127")));
+            AllPlans.Add(new PlanReference(PlanType.BYO_Replacement, 100.00f, 199.99f, new PlanTier(2, 29.99f, "022830"), new PlanTier(3, 49.99f, "023135")));
+            AllPlans.Add(new PlanReference(PlanType.BYO_Replacement, 200.00f, 299.99f, new PlanTier(2, 49.99f, "022855"), new PlanTier(3, 69.99f, "023150")));
+            AllPlans.Add(new PlanReference(PlanType.BYO_Replacement, 300.00f, 399.99f, new PlanTier(2, 69.99f, "022954"), new PlanTier(3, 99.99f, "023168")));
+            AllPlans.Add(new PlanReference(PlanType.BYO_Replacement, 400.00f, 499.99f, new PlanTier(2, 89.99f, "022996"), new PlanTier(3, 129.99f, "023234")));
+            AllPlans.Add(new PlanReference(PlanType.BYO_Replacement, 500.00f, 999.99f, new PlanTier(2, 139.99f, "023036"), new PlanTier(3, 199.99f, "023242")));
+            AllPlans.Add(new PlanReference(PlanType.BYO_Replacement, 1000.00f, 1499.99f, new PlanTier(2, 199.99f, "023044"), new PlanTier(3, 279.99f, "023267")));
+            AllPlans.Add(new PlanReference(PlanType.BYO_Replacement, 1500.00f, 3000.00f, new PlanTier(2, 299.99f, "023101"), new PlanTier(3, 429.99f, "023341")));
 
             AllPlans.Add(new PlanReference(PlanType.Build_Plan, 0.00f,     399.99f,   new PlanTier(2, 49.99f, "947944"),   new PlanTier(3, 59.99f, "948083")));
             AllPlans.Add(new PlanReference(PlanType.Build_Plan, 400.00f,   599.99f,   new PlanTier(2, 69.99f, "948000"),   new PlanTier(3, 99.99f, "948091")));
