@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using MicroCLib.Models.Reference;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -101,7 +102,7 @@ namespace MicroCLib.Models
             Serials = new ObservableCollection<string>();
         }
 
-        public bool PlanApplicable()
+        public bool IsPlanApplicable()
         {
             switch (Type)
             {
@@ -225,10 +226,36 @@ namespace MicroCLib.Models
                     yield return PlanType.Desktop_ADH;
                     yield return PlanType.Desktop_Extension;
                     break;
+                case ComponentType.BuildService:
+                    yield return PlanType.Build_Plan;
+                    break;
                 default:
                     yield return PlanType.Replacement;
                     yield return PlanType.Carry_In;
                     break;
+            }
+        }
+
+        public IEnumerable<PlanReference> ApplicablePlans()
+        {
+            if (!IsPlanApplicable())
+            {
+                yield break;
+            }
+
+            if(Item == null)
+            {
+                yield break;
+            }
+
+            var types = ApplicablePlans(Type);
+            foreach(var type in types)
+            {
+                var plan = PlanReference.Get(type, Item.Price);
+                if (plan != null)
+                {
+                    yield return plan;
+                }
             }
         }
 

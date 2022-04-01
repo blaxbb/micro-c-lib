@@ -87,5 +87,19 @@ namespace MicroCLib.Tests
             }
         }
 
+        [TestMethod]
+        public void ApplicablePlansTest()
+        {
+            var comp = new BuildComponent();
+            comp.Item = new Item()
+            {
+                Price = 500.01f
+            };
+            comp.Type = BuildComponent.ComponentType.BluetoothAdapter;
+
+            var plans = comp.ApplicablePlans().ToList();
+            Assert.IsTrue(!plans.Any(p => p.Type == PlanType.Replacement));
+        }
+
     }
 }

@@ -23,5 +23,33 @@ namespace MicroCLib.Models.Reference
             Price = price;
             SKU = "000000";
         }
+
+        public Item GetItem(string name)
+        {
+            return new Item()
+            {
+                Name = name,
+                Price = Price,
+                OriginalPrice = Price,
+                SKU = SKU,
+                Brand = "Micro Center",
+                ComponentType = BuildComponent.ComponentType.Plan,
+                Quantity = 1,
+            };
+        }
+
+        public Item GetItem(PlanReference parent)
+        {
+            return new Item()
+            {
+                Name = parent.Name,
+                Price = Price,
+                OriginalPrice = Price,
+                SKU = SKU,
+                Brand = "Micro Center",
+                ComponentType = BuildComponent.ComponentType.Plan,
+                Quantity = 1,
+            };
+        }
     }
 }

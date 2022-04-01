@@ -10,7 +10,7 @@ namespace MicroCLib.Models.Reference
     {
         public static List<PlanReference> AllPlans = new List<PlanReference>();
         public PlanType Type { get; set; }
-        public string Name => Type.ToString().Replace('_', ' ');
+        public string Name => Type.FriendlyName();
         public float MinPrice { get; set; }
         public float MaxPrice { get; set; }
 
