@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using static MicroCLib.Models.BuildComponent;
 using static MicroCLib.Models.Reference.PlanReference;
 
 namespace MicroCLib.Models
@@ -238,20 +239,25 @@ namespace MicroCLib.Models
 
         public IEnumerable<PlanReference> ApplicablePlans()
         {
+            return ApplicablePlans(Item.Price);
+        }
+
+        public IEnumerable<PlanReference> ApplicablePlans(float price)
+        {
             if (!IsPlanApplicable())
             {
                 yield break;
             }
 
-            if(Item == null)
+            if (Item == null)
             {
                 yield break;
             }
 
             var types = ApplicablePlans(Type);
-            foreach(var type in types)
+            foreach (var type in types)
             {
-                var plan = PlanReference.Get(type, Item.Price);
+                var plan = PlanReference.Get(type, price);
                 if (plan != null)
                 {
                     yield return plan;
@@ -379,5 +385,24 @@ namespace MicroCLib.Models
 
             return BuildURL;
         }
+    }
+
+    public static class BuildComponentExtensions
+    {
+        public static bool IsBuildPlanApplicable(this ComponentType type) => type switch
+        {
+            ComponentType.CPU => true,
+            ComponentType.Motherboard => true,
+            ComponentType.RAM => true,
+            ComponentType.Case => true,
+            ComponentType.PowerSupply => true,
+            ComponentType.GPU => true,
+            ComponentType.SSD => true,
+            ComponentType.HDD => true,
+            ComponentType.CPUCooler => true,
+            ComponentType.WaterCoolingKit => true,
+            ComponentType.CaseFan => true,
+            _ => false,
+        };
     }
 }

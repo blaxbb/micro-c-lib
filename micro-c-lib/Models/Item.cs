@@ -131,7 +131,7 @@ namespace MicroCLib.Models
                 return item.Specs["SKU"] ?? "";
             }
 
-            var serviceSKURegex = "class=\"skuInfo\".*</span>.*?(\\d{6})";
+            var serviceSKURegex = "class=\"skuInfo\">.*?(\\d{6})";
             var result = Regex.Match(body, serviceSKURegex, RegexOptions.Singleline);
             if (result.Success)
             {

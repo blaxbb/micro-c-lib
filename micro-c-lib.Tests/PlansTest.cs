@@ -88,7 +88,8 @@ namespace MicroCLib.Tests
         }
 
         [TestMethod]
-        public void ApplicablePlansTest()
+        [TestCategory("Applicable Plans")]
+        public void ReplacementOver500()
         {
             var comp = new BuildComponent();
             comp.Item = new Item()
@@ -97,9 +98,59 @@ namespace MicroCLib.Tests
             };
             comp.Type = BuildComponent.ComponentType.BluetoothAdapter;
 
-            var plans = comp.ApplicablePlans().ToList();
+            var plans = comp.ApplicablePlans();
+
+            //Replacement plans not valid over 500
             Assert.IsTrue(!plans.Any(p => p.Type == PlanType.Replacement));
         }
 
+        [TestMethod]
+        [TestCategory("Applicable Plans")]
+        public void ApplicableDesktopPlans()
+        {
+            //desktops cannot be replacement/carry in
+            var type = BuildComponent.ComponentType.Desktop;
+            var comp = new BuildComponent();
+            comp.Item = new Item()
+            {
+                ComponentType = type
+            };
+            var plans = comp.ApplicablePlans();
+            Assert.IsTrue(plans.All(p => p.Type != PlanType.Replacement || p.Type != PlanType.Carry_In));
+        }
+
+        [TestMethod]
+        [TestCategory("Applicable Plans")]
+        public void ApplicableLaptopPlans()
+        {
+            //laptop cannot be replacement/carry in
+            var type = BuildComponent.ComponentType.Laptop;
+            var comp = new BuildComponent();
+            comp.Item = new Item()
+            {
+                ComponentType = type
+            };
+            var plans = comp.ApplicablePlans();
+            Assert.IsTrue(plans.All(p => p.Type != PlanType.Replacement || p.Type != PlanType.Carry_In));
+        }
+
+        [TestMethod]
+        [TestCategory("Applicable Plans")]
+        public void ApplicablePlansCustomPrice()
+        {
+            var comp = new BuildComponent();
+            comp.Item = new Item()
+            {
+                ComponentType = BuildComponent.ComponentType.BuildService,
+                Price = 199.99f
+            };
+            comp.Type = BuildComponent.ComponentType.BuildService;
+
+            var plans = comp.ApplicablePlans(2999.99f);
+            Assert.IsTrue(plans.All(p => p.Type == PlanType.Build_Plan));
+            Assert.IsTrue(plans.Count() == 1);
+            var plan = plans.ElementAt(0);
+            Assert.IsTrue(plan.Tiers.All(t => t.Price > 60f));
+        }
     }
 }

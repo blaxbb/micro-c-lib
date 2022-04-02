@@ -15,7 +15,7 @@ namespace MicroCLib.Tests
         //
         //should have a list of different products that hit different conditions
         //
-        private const string URL = "/product/427248/1-year-accidental-damage-protection-plan";
+        private const string URL = "/product/607209/custom-water-cooled-pc-building-service-tier-3";
         private const string STORE_ID = "141";
         public ItemTests()
         {
