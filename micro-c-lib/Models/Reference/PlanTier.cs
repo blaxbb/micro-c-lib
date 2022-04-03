@@ -42,7 +42,7 @@ namespace MicroCLib.Models.Reference
         {
             return new Item()
             {
-                Name = parent.Name,
+                Name = $"{Duration} Year {parent.Name}",
                 Price = Price,
                 OriginalPrice = Price,
                 SKU = SKU,

@@ -99,7 +99,6 @@ namespace MicroCLib.Tests
             comp.Type = BuildComponent.ComponentType.BluetoothAdapter;
 
             var plans = comp.ApplicablePlans();
-
             //Replacement plans not valid over 500
             Assert.IsTrue(!plans.Any(p => p.Type == PlanType.Replacement));
         }
