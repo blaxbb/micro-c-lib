@@ -32,9 +32,10 @@ namespace MicroCLib.Models
         private int quantity = 1;
         private float price = 0f;
         private string brand = "";
+        private string location;
 
         public int Quantity { get => quantity; set => SetProperty(ref quantity, value); }
-        public string Location { get; set; } = "";
+        public string Location { get => location; set => SetProperty(ref location, value); }
         public List<Plan> Plans { get; set; }
         public string ID { get; set; } = "";
         public string Brand { get => brand; set => SetProperty(ref brand, value); }
@@ -71,7 +72,7 @@ namespace MicroCLib.Models
 
                 if (response.StatusCode != System.Net.HttpStatusCode.OK)
                 {
-                    return new Item(){ Name = "Product not found", SKU = "000000" };
+                    return new Item() { Name = "Product not found", SKU = "000000" };
                 }
 
                 progress?.Report(new ProgressInfo($"Parsing item details", .9d));
@@ -158,7 +159,7 @@ namespace MicroCLib.Models
         public static float ParseOriginalPrice(string body, Item item)
         {
             var regexes = new Regex[] { GetOriginalPrice, GetOriginalPriceAlt };
-            foreach(var reg in regexes)
+            foreach (var reg in regexes)
             {
                 var match = reg.Match(body);
                 if (match.Success)
@@ -304,11 +305,11 @@ namespace MicroCLib.Models
 
         public static ComponentType GetPrimaryType(List<CategoryInfo> categories)
         {
-            for(int i = categories.Count - 1; i >= 0; i--)
+            for (int i = categories.Count - 1; i >= 0; i--)
             {
                 var cat = categories[i];
                 var type = BuildComponent.TypeForCategoryFilter(cat.Filter);
-                if(type != ComponentType.None)
+                if (type != ComponentType.None)
                 {
                     return type;
                 }
@@ -333,7 +334,7 @@ namespace MicroCLib.Models
             var ret = new List<ClearanceInfo>();
 
             var items = GetClearanceItems.Matches(body);
-            for(int i = 0; i < items.Count / 2; i++)
+            for (int i = 0; i < items.Count / 2; i++)
             {
                 var item = items[i];
                 var text = item.Groups[1].Value;
