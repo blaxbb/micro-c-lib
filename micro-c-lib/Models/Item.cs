@@ -34,11 +34,11 @@ namespace MicroCLib.Models
         private float price = 0f;
         private string brand = "";
         private string location;
-        private List<InventoryLocation> inventoryLocations;
+        private List<InventoryEntry> inventoryEntries;
 
         public int Quantity { get => quantity; set => SetProperty(ref quantity, value); }
         public string Location { get => location; set => SetProperty(ref location, value); }
-        public List<InventoryLocation> InventoryLocations { get => inventoryLocations; set => SetProperty(ref inventoryLocations, value); }
+        public List<InventoryEntry> InventoryEntries { get => inventoryEntries; set => SetProperty(ref inventoryEntries, value); }
         public List<Plan> Plans { get; set; }
         public string ID { get; set; } = "";
         public string Brand { get => brand; set => SetProperty(ref brand, value); }
@@ -53,7 +53,7 @@ namespace MicroCLib.Models
             PictureUrls = new List<string>();
             Plans = new List<Plan>();
             ClearanceItems = new List<ClearanceInfo>();
-            InventoryLocations = new List<InventoryLocation>();
+            InventoryEntries = new List<InventoryEntry>();
         }
 
         public static async Task<Item> FromUrl(string urlIdStub, string storeId, CancellationToken? token = null, IProgress<ProgressInfo> progress = null)
