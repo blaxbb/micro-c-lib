@@ -361,7 +361,7 @@ namespace MicroCLib.Models
                 if (id.Success)
                 {
                     var idtext = id.Groups[1].Value;
-                    if(text.Length == 6)
+                    if(idtext.Length == 6)
                     {
                         idtext = $"CL0{idtext}";
                     }
