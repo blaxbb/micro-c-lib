@@ -9,7 +9,9 @@ namespace micro_c_lib.Models
     {
         private string state;
         private float price;
+        private string id;
 
+        public string Id { get => id; set => SetProperty(ref id, value); }
         public string State { get => state; set => SetProperty(ref state, value); }
         public float Price { get => price; set => SetProperty(ref price, value); }
     }

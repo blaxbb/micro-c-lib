@@ -357,6 +357,22 @@ namespace MicroCLib.Models
                     info.Price = f;
                 }
 
+                var id = GetClearanceId.Match(text);
+                if (id.Success)
+                {
+                    var idtext = id.Groups[1].Value;
+                    if(text.Length == 6)
+                    {
+                        idtext = $"CL0{idtext}";
+                    }
+                    else
+                    {
+                        idtext = $"CL{idtext}";
+                    }
+
+                    info.Id = idtext;
+                }
+
                 ret.Add(info);
             }
 
@@ -383,6 +399,7 @@ namespace MicroCLib.Models
         private static Regex GetClearanceItems => new Regex("clearance-body(.*?)<\\/tr>", RegexOptions.Singleline);
         private static Regex GetClearanceState => new Regex("index_line.*?>(.*?)<", RegexOptions.Singleline);
         private static Regex GetClearancePrice => new Regex("data-price=\"(.*?)\"", RegexOptions.Singleline);
+        private static Regex GetClearanceId => new Regex("ID: (\\d{6,7})<");
 
         public static string HttpDecode(string s)
         {
