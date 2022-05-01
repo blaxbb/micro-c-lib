@@ -106,5 +106,12 @@ namespace MicroCLib.Tests
             Assert.IsTrue(result.Items.Count > 1);
         }
 
+        [TestMethod]
+        public async Task LoadMultipleFast()
+        {
+            var result = await Search.LoadMultipleFast(new List<string>() { "326652", "195073" });
+            Assert.IsTrue(result.Items.Count == 2);
+        }
+
     }
 }

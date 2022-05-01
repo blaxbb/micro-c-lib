@@ -138,6 +138,20 @@ namespace MicroCLib.Models
             return new SearchResults();
         }
 
+        public static async Task<SearchResults> LoadMultipleFast(List<string> skus, CancellationToken? token = null)
+        {
+            var url = $"https://microc.bbarrett.me/MicroCenterProxy/getCachedSkus/{string.Join(",", skus)}";
+            var response = await (token != null ? client.GetAsync(url, token.Value) : client.GetAsync(url));
+            if (response.IsSuccessStatusCode)
+            {
+                var body = await response.Content.ReadAsStringAsync();
+                var result = JsonConvert.DeserializeObject<SearchResults>(body);
+                return result;
+            }
+
+            return new SearchResults();
+        }
+
         public static async Task<SearchResults> ParseBody(string body, CancellationToken? token = null)
         {
             var result = new SearchResults();
