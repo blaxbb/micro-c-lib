@@ -60,6 +60,12 @@ namespace MicroCLib.Models
         {
             var item = new Item();
 
+            var paramIndex = urlIdStub.IndexOf('?');
+            if(paramIndex > 0)
+            {
+                urlIdStub = urlIdStub.Substring(0, paramIndex);
+            }
+
             using (HttpClient client = new HttpClient())
             {
                 client.Timeout = TimeSpan.FromSeconds(15);
