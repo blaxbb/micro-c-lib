@@ -81,6 +81,19 @@ namespace MicroCLib.Models
             None,
         }
         public ComponentType Type { get; set; } = ComponentType.None;
+
+        public enum Department
+        {
+            None,
+            GS,
+            CE,
+            BYO,
+            Apple,
+            Systems,
+            DIY,
+            Impulse
+        }
+
         [JsonIgnore]
         public string CategoryFilter => CategoryFilterForType(Type);
         [JsonIgnore]
@@ -403,6 +416,68 @@ namespace MicroCLib.Models
             ComponentType.WaterCoolingKit => true,
             ComponentType.CaseFan => true,
             _ => false,
+        };
+
+        public static Department GetDepartment(this ComponentType type) => type switch
+        {
+            ComponentType.BuildService => Department.BYO,
+            ComponentType.CPU => Department.BYO,
+            ComponentType.Motherboard => Department.BYO,
+            ComponentType.RAM => Department.BYO,
+            ComponentType.Case => Department.BYO,
+            ComponentType.PowerSupply => Department.BYO,
+            ComponentType.GPU => Department.BYO,
+            ComponentType.SSD => Department.BYO,
+            ComponentType.HDD => Department.BYO,
+            ComponentType.CPUCooler => Department.BYO,
+            ComponentType.CaseFan => Department.BYO,
+            ComponentType.OperatingSystem => Department.GS,
+            ComponentType.WaterCoolingKit => Department.BYO,
+            ComponentType.Desktop => Department.Systems,
+            ComponentType.Laptop => Department.Systems,
+            ComponentType.Monitor => Department.Systems,
+            ComponentType.Printer => Department.CE,
+            ComponentType.Keyboard => Department.GS,
+            ComponentType.Mouse => Department.GS,
+            ComponentType.Television => Department.CE,
+            ComponentType.CellPhone => Department.GS,
+            ComponentType.DigitalCamera => Department.CE,
+            ComponentType.Webcam => Department.CE,
+            ComponentType.FlashMemory => Department.CE,
+            ComponentType.HomeAutomation => Department.CE,
+            ComponentType.SecurityCamera => Department.CE,
+            ComponentType.SecurityCameraKit => Department.CE,
+            ComponentType.WirelessRouter => Department.GS,
+            ComponentType.WiredRouter => Department.GS,
+            ComponentType.WiredNetworkAdapter => Department.GS,
+            ComponentType.NetworkingPowerline => Department.GS,
+            ComponentType.POENetworkAdapter => Department.GS,
+            ComponentType.NetworkSwitch => Department.GS,
+            ComponentType.WirelessAdapter => Department.GS,
+            ComponentType.WirelessAccessPoint => Department.GS,
+            ComponentType.WirelessBoosters => Department.GS,
+            ComponentType.BluetoothAdapter => Department.GS,
+            ComponentType.NetworkingBridge => Department.GS,
+            ComponentType.NetworkingCable => Department.GS,
+            ComponentType.NetworkingAccessory => Department.GS,
+            ComponentType.NetworkAttachedStorage => Department.GS,
+            ComponentType.UninteruptablePowerSupply => Department.GS,
+            ComponentType.InkAndToner => Department.GS,
+            ComponentType.Printer3D => Department.DIY,
+            ComponentType.Headphones => Department.GS,
+            ComponentType.Speakers => Department.GS,
+            ComponentType.GameControllers => Department.GS,
+            ComponentType.GameAccessories => Department.GS,
+            ComponentType.VirutalReality => Department.GS,
+            ComponentType.Xbox => Department.GS,
+            ComponentType.Playstation => Department.GS,
+            ComponentType.Nintendo => Department.GS,
+            ComponentType.ExternalDrives => Department.GS,
+            ComponentType.HomeTheaterAudio => Department.CE,
+            ComponentType.HomeTheaterWireless => Department.CE,
+            ComponentType.Projectors => Department.CE,
+            ComponentType.StreamingMedia => Department.CE,
+            _ => Department.None
         };
     }
 }
