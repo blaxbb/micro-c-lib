@@ -49,6 +49,11 @@ namespace MicroCLib.Models
                 }
 
                 var addResult = await LoadQuery(searchQuery, storeID, categoryFilter, orderBy, page, token);
+                if(addResult != null && addResult.Items.Count == 0)
+                {
+                    result.TotalResults = result.Items.Count;
+                    break;
+                }
                 result.Items.AddRange(addResult.Items);
                 result.TotalResults = addResult.TotalResults;
                 page++;
