@@ -15,7 +15,7 @@ namespace MicroCLib.Tests
         //
         //should have a list of different products that hit different conditions
         //
-        private const string URL = "/product/507885/corsair-obsidian-500d-rgb-se-tempered-glass-atx-mid-tower-computer-case-black";
+        private const string URL = "/product/648319/asus-rog-strix-ga15dk-gaming-pc-platinum-collection";
         private const string STORE_ID = "141";
         public ItemTests()
         {
