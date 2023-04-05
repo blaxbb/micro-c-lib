@@ -74,6 +74,9 @@ namespace MicroCLib.Models
             progress?.Report(new ProgressInfo($"Loading query {searchQuery}", .3));
 
             var url = GetSearchUrl(searchQuery, storeID, categoryFilter, orderBy, RESULTS_PER_PAGE, page);
+            client.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0");
+            client.DefaultRequestHeaders.Add("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8");
+            client.DefaultRequestHeaders.Add("Accept-Language", "en-US,en;q=0.5");
             var response = await (token != null ? client.GetAsync(url, token.Value) :  client.GetAsync(url));
             token?.ThrowIfCancellationRequested();
             if (response.StatusCode == System.Net.HttpStatusCode.OK)
