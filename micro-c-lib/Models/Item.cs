@@ -86,7 +86,8 @@ namespace MicroCLib.Models
 
                 if (response.StatusCode != System.Net.HttpStatusCode.OK)
                 {
-                    return new Item() { Name = "Product not found", SKU = "000000" };
+                    var respBody = await response.Content.ReadAsStringAsync();
+                    return new Item() { Name = "Product not found", SKU = "000000", Specs = new Dictionary<string, string>() { { "response", respBody } } };
                 }
 
                 progress?.Report(new ProgressInfo($"Parsing item details", .9d));
