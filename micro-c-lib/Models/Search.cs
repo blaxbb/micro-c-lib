@@ -163,7 +163,7 @@ namespace MicroCLib.Models
         public static async Task<SearchResults> ParseBody(string body, CancellationToken? token = null)
         {
             var result = new SearchResults();
-            var shortMatches = Regex.Matches(body, "class=\"image2\" data-name=\"(.*?)\" data-id=\"(.*?)\"(?:.*?)price=\"(.*?)\"(?:.*?)data-brand=\"(.*?)\"(?:.*?)href=\"(.*?)\"(?:.*?)src=\"(.*?)\"");
+            var shortMatches = Regex.Matches(body, "class=\"image2 productClickItemV2\"(?:.*?)data-name=\"(.*?)\" data-id=\"(.*?)\"(?:.*?)price=\"(.*?)\"(?:.*?)data-brand=\"(.*?)\"(?:.*?)href=\"(.*?)\"(?:.*?)src=\"(.*?)\"");
             var stockMatches = Regex.Matches(body, "<div class=\"stock\">(.+?)<\\/div>", RegexOptions.Singleline);
             var skuMatches = Regex.Matches(body, "<p class=\"sku\">SKU: (\\d{6})</p>");
             var clearanceMatches = Regex.Matches(body, "\"clearance\".*?<\\/div>", RegexOptions.Singleline);
