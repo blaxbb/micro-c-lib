@@ -15,7 +15,6 @@ namespace MicroCLib.Models
 {
     public static class Search
     {
-        static HttpClient client;
         public const int RESULTS_PER_PAGE = 96;
         public enum OrderByMode
         {
@@ -26,11 +25,13 @@ namespace MicroCLib.Models
             pricehigh
         }
 
-        static Search()
-        {
-            client = new HttpClient();
+        static HttpClient newClient() {
+            var client = new HttpClient();
             client.Timeout = TimeSpan.FromSeconds(15);
+            return client;
         }
+
+        
         public static string GetSearchUrl(string query, string storeId, string categoryFilter, OrderByMode orderBy, int resultsPerPage, int page)
         {
             return $"https://www.microcenter.com/search/search_results.aspx?Ntt={query}&storeid={storeId}&myStore=false&Ntk=all&N={categoryFilter}&sortby={orderBy}&rpp={resultsPerPage}&page={page}";
@@ -66,6 +67,7 @@ namespace MicroCLib.Models
 
         public static async Task<SearchResults> LoadQuery(string searchQuery, string storeID, string categoryFilter, OrderByMode orderBy, int page, CancellationToken? token = null, IProgress<ProgressInfo> progress = null)
         {
+            var client = newClient();
             token?.Register(() =>
             {
                 client?.CancelPendingRequests();
@@ -96,6 +98,8 @@ namespace MicroCLib.Models
 
         public static async Task<SearchResults> LoadEnhanced(string searchQuery, string storeID, string categoryFilter, CancellationToken? token = null)
         {
+            return await LoadAll(searchQuery, storeID, categoryFilter, OrderByMode.match, token);
+
             Dictionary<string, string> query = new Dictionary<string, string>()
             {
                 {"query", searchQuery},
@@ -104,6 +108,8 @@ namespace MicroCLib.Models
                 {"orderBy", "0"},
                 {"page", "0" }
             };
+
+            var client = newClient();
 
             string queryString = string.Join("&", query.Select((x) => x.Key + "=" + x.Value?.ToString()));
             var url = $"https://microc.bbarrett.me/MicroCenterProxy/searchAll?{queryString}";
@@ -120,6 +126,18 @@ namespace MicroCLib.Models
 
         public static async Task<Item> LoadFast(string search, CancellationToken? token = null)
         {
+            var res = await LoadQuery(search, "141", null, OrderByMode.match, 0, token);
+            if(res != null && res.TotalResults > 0)
+            {
+                return await Item.FromUrl(res.Items[0].URL, "141", token);
+            }
+            else
+            {
+                return null;
+            }
+
+            var client = newClient();
+
             var url = $"https://microc.bbarrett.me/MicroCenterProxy/getCached/{search}";
             var response = await (token != null ? client.GetAsync(url, token.Value) : client.GetAsync(url));
             if (response.IsSuccessStatusCode)
@@ -134,6 +152,8 @@ namespace MicroCLib.Models
 
         public static async Task<SearchResults> LoadCategoryFast(BuildComponent.ComponentType type, CancellationToken? token = null)
         {
+            var client = newClient();
+
             var url = $"https://microc.bbarrett.me/MicroCenterProxy/getCachedCategory/{(int)type}";
             var response = await (token != null ? client.GetAsync(url, token.Value) : client.GetAsync(url));
             if (response.IsSuccessStatusCode)
@@ -148,6 +168,8 @@ namespace MicroCLib.Models
 
         public static async Task<SearchResults> LoadMultipleFast(List<string> skus, CancellationToken? token = null)
         {
+            var client = newClient();
+
             var url = $"https://microc.bbarrett.me/MicroCenterProxy/getCachedSkus/{string.Join(",", skus)}";
             var response = await (token != null ? client.GetAsync(url, token.Value) : client.GetAsync(url));
             if (response.IsSuccessStatusCode)
