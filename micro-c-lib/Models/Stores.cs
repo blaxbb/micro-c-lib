@@ -14,6 +14,7 @@ namespace MicroCLib.Models
             {"GA - Marietta", "041"},
             {"IL - Chicago", "151"},
             {"IL - Westmont", "025"},
+            {"IN - Indianapolis", "165" },
             {"KS - Overland Park", "191"},
             {"MA - Cambridge", "121"},
             {"MD - Rockville", "085"},
